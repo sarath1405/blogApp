@@ -15,6 +15,7 @@ const Create = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [description, setDescription] = useState('');
+  const [type, setType] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -62,7 +63,8 @@ const Create = () => {
             avatar,
             title,
             content,
-            description
+            description,
+            type
         })
     })
 
@@ -95,9 +97,16 @@ const Create = () => {
             {error!=='' ? <Error error={error} click={errorClose}/>: '' }
             {loading? <img src="/images/loading.gif" alt="" className="w-9 h-9 mt-3" />:'' }
             <form onSubmit={createBlog} className='flex flex-col items-center lg:w-[60%] w-full h-full lg:p-10 p-0'>
-                <div className="flex flex-col h-full w-full justify-around items-center">
+                <div className="flex md:flex-row flex-col h-full w-full justify-around items-center">
                   <textarea type="text" className='w-full border-2 border-black p-3 m-3 resize-none rounded-xl' cols='5' rows='3' onChange={(e) => setTitle(e.target.value)} value={title} placeholder='title' required/>
                   <textarea type="text" className='w-full border-2 border-black p-3 m-3 resize-none rounded-xl' cols='5' rows='3' onChange={(e) => setContent(e.target.value)} value={content} placeholder='content' required/>
+                </div>
+                <div className='w-full flex justify-center items-center m-3'>
+                  <select value={type} onChange={(e) => setType(e.target.value)} id="" className='sm:w-[30%] w-[50%] border-2 border-slate-800 rounded-lg'>
+                    {console.log(type)};
+                    <option value="public" className=''>Public</option>
+                    <option value="private">Private</option>
+                  </select>
                 </div>
                 <div className='flex flex-col h-full w-full justify-around items-center'>
                   <textarea className='w-full m-3 h-full resize-none p-3 border-2 border-black rounded-xl' rows="15" type="description" onChange={(e) => setDescription(e.target.value)} value={description} placeholder='description' required/>

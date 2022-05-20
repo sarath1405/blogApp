@@ -1,8 +1,8 @@
 import React from 'react'
 import Navbar from './Navbar';
-import {CheckIcon, UserIcon, KeyIcon} from '@heroicons/react/outline'
+import {CheckIcon, UserIcon, KeyIcon, XIcon} from '@heroicons/react/outline'
 import { useNavigate } from 'react-router-dom';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Error from './Error';
 
 const SignupPage = () => {
@@ -15,6 +15,15 @@ const SignupPage = () => {
   const [avatar, setAvatar] = useState(0);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [show, setShow] = useState(0);
+
+  useEffect(() => {
+    if(confirmPassword!=='') {
+      if(confirmPassword===password) setShow(1);
+      else setShow(2);
+    }
+    else setShow(0);
+  }, [show, password, confirmPassword])
 
   const handleForm = async (e) => {
     e.preventDefault();
@@ -73,7 +82,8 @@ const SignupPage = () => {
                   <input value={password} onChange={(e) => setPassword(e.target.value)} className='border-0 outline-none' type="password" placeholder='create password' required/>
                 </div>
                 <div className="flex  border-2 border-slate-200 m-10 p-1 px-3 rounded-xl">
-                  <CheckIcon className='w-7 h-7 mr-3 text-slate-600'/>
+                  {show===0?<KeyIcon className='w-7 h-7 mr-3 text-slate-600'/> : 
+                  show===1?<CheckIcon className='w-7 h-7 mr-3 text-green-600'/> : <XIcon className='w-7 h-7 mr-3 text-red-600'/>}
                   <input value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className='border-0 outline-none' type="password" placeholder='confirm password' required/>
                 </div>
               </div>
