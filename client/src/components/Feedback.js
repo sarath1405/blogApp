@@ -26,7 +26,7 @@ const Feedback = () => {
   const handleForm = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const response = await fetch('https://blogapp14.herokuapp.com/feedback', {
+    const response = await fetch('https://blogapp14.onrender.com/feedback', {
       method : 'POST',
       headers : {'content-Type' : 'application/json'},
       body : JSON.stringify({
@@ -85,7 +85,7 @@ const Feedback = () => {
                   </div>
                 </div>
                 <div className="flex  border-2 border-slate-200 m-10 p-1 px-3 rounded-xl">
-                  <input value={feedback} onChange={(e) => setFeedback(e.target.value)} className='border-0 outline-none overflow-hidden' type="text" placeholder='feedback' required/>
+                  <textarea value={feedback} onChange={(e) => setFeedback(e.target.value)} className='border-0 resize-none outline-none overflow-hidden w-full' rows='3' type="text" placeholder='feedback' required />
                 </div>
               </div>
               <button type='submit' className="bg-blue-800 text-xl font-nunito text-white w-[70%] p-2 rounded-2xl text-center border-2 border-blue-800 hover:bg-transparent hover:text-blue-800">

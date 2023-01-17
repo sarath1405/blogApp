@@ -28,7 +28,7 @@ const SignupPage = () => {
   const handleForm = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const response = await fetch('https://blogapp14.herokuapp.com/signup', {
+    const response = await fetch('https://blogapp14.onrender.com/signup', {
       method : 'POST',
       headers : {'content-Type' : 'application/json'},
       body : JSON.stringify({

@@ -18,7 +18,7 @@ const Uhome = () => {
     const token = localStorage.getItem('token');
     if(token) {
         const authentication = async () => {
-            const response = await fetch('https://blogapp14.herokuapp.com/auth', {
+            const response = await fetch('https://blogapp14.onrender.com/auth', {
                 method : 'GET',
                 headers : {
                     'x-access-token' : localStorage.getItem('token')
@@ -42,7 +42,7 @@ const Uhome = () => {
 
   useEffect(() => {
     const displayBlogs = async () => {
-      const response = await fetch('https://blogapp14.herokuapp.com/getBlogs', {
+      const response = await fetch('https://blogapp14.onrender.com/getBlogs', {
         method : 'GET',
         headers : {'user' : username},
       })
@@ -73,7 +73,7 @@ const Uhome = () => {
           <div><Profile logout={logout} username={username} avatar={avatar}/></div>
           <div><Profile logout={logout} username={username} avatar={avatar}/></div>
           <div className="h-full lg:mt-[150px] mt-[130px] flex">
-            <div className="p-6 grid lg:grid-cols-3 md:grid-cols-2 justify-center w-full h-fit">
+            <div className="p-6 grid lg:px-[15%] grid-cols-1 justify-center w-full h-fit">
               {
                 (error ? <div className="text-lg font-nunito">{error}</div> : (blogs.length > 0) ?
                   blogs.map((blog) => {

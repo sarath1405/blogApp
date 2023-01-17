@@ -1,10 +1,10 @@
 import React from 'react'
 
-const DisplayPBlog = ({avatar, user, title, content, description, id}) => {
+const DisplayPBlog = ({avatar, user, title, content, description, id, type}) => {
 
   const del = async () => {  
     if(window.confirm('are you sure you want to delete?')){
-        const response = await fetch('https://blogapp14.herokuapp.com/delete', {
+        const response = await fetch('https://blogapp14.onrender.com/delete', {
             method : 'POST',
             headers : {'content-Type' : 'application/json'},
             body : JSON.stringify({
@@ -26,6 +26,9 @@ const DisplayPBlog = ({avatar, user, title, content, description, id}) => {
             <p className="font-nunito text-lg ml-2">{user}</p>
           </div>
           <div className="w-full flex justify-end items-center">
+            <div className='mr-3'>
+              {type}
+            </div>
             <button className="bg-red-600 text-slate-100 rounded-lg px-3 py-1 mr-1 hover:bg-red-700" onClick={del}>
                 Delete
             </button>

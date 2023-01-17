@@ -15,7 +15,7 @@ const Create = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [description, setDescription] = useState('');
-  const [type, setType] = useState('');
+  const [type, setType] = useState('select');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -23,7 +23,7 @@ const Create = () => {
     const token = localStorage.getItem('token');
     if(token) {
         const authentication = async () => {
-            const response = await fetch('https://blogapp14.herokuapp.com/auth', {
+            const response = await fetch('https://blogapp14.onrender.com/auth', {
                 method : 'GET',
                 headers : {
                     'x-access-token' : localStorage.getItem('token')
@@ -54,8 +54,12 @@ const Create = () => {
 
   const createBlog = async (e) => {
     e.preventDefault();
+    if(type == 'select') {
+      setError('type of blog is not selected!');
+      return;
+    }
     setLoading(true);
-    const response = await fetch('https://blogapp14.herokuapp.com/create', {
+    const response = await fetch('https://blogapp14.onrender.com/create', {
         method : 'POST',
         headers : {'content-Type' : 'application/json'},
         body : JSON.stringify({
@@ -104,6 +108,7 @@ const Create = () => {
                 <div className='w-full flex justify-center items-center m-3'>
                   <select value={type} onChange={(e) => setType(e.target.value)} id="" className='sm:w-[30%] w-[50%] border-2 border-slate-800 rounded-lg'>
                     {console.log(type)};
+                    <option value="select">Select</option>
                     <option value="public" className=''>Public</option>
                     <option value="private">Private</option>
                   </select>

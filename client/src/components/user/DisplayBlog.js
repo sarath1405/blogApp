@@ -2,7 +2,7 @@ import React from 'react'
 
 const DisplayBlog = ({avatar, user, username, title, content, description, id}) => {
   return (
-    <div className='p-5 border-2 m-5 border-slate-200 rounded-2xl shadow-lg  overflow-auto bg-blue-100'>
+    <div className='p-5 border-2 m-5 border-slate-200 rounded-md shadow-lg  overflow-auto bg-slate-100'>
         <div className='flex items-center'>
           <img src={`/images/avatar${avatar}.svg`} className='h-11 w-11 rounded-[100%]' alt="" />
           <div className="block">

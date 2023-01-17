@@ -18,7 +18,7 @@ const MyBlogs = () => {
     const token = localStorage.getItem('token');
     if(token) {
         const authentication = async () => {
-            const response = await fetch('https://blogapp14.herokuapp.com/auth', {
+            const response = await fetch('https://blogapp14.onrender.com/auth', {
                 method : 'GET',
                 headers : {
                     'x-access-token' : localStorage.getItem('token')
@@ -42,7 +42,7 @@ const MyBlogs = () => {
 
   useEffect(() => {
     const displayBlogs = async () => {
-      const response = await fetch('https://blogapp14.herokuapp.com/getPersonalBlogs', {
+      const response = await fetch('https://blogapp14.onrender.com/getPersonalBlogs', {
         method : 'GET',
         headers : {'user' : username},
       })
@@ -80,7 +80,7 @@ const MyBlogs = () => {
               {
                 (error ? <div className="text-lg font-nunito">{error}</div> : (blogs.length > 0) ?
                   blogs.map((blog) => {
-                    return <DisplayPBlog user={blog.user} avatar={blog.avatar} title={blog.title} content={blog.content} description={blog.description} likes={blog.likes} id={blog._id}/> 
+                    return <DisplayPBlog user={blog.user} avatar={blog.avatar} title={blog.title} content={blog.content} description={blog.description} likes={blog.likes} id={blog._id} type={blog.type}/> 
                   }) 
                   : <img src="/images/loading.gif" alt="hello" className=' bg-transparent w-20 h-20'/>
                 )
